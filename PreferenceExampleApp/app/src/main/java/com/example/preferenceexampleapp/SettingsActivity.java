@@ -106,10 +106,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      */
     private static void bindPreferenceSummaryToValue(Preference preference) {
         // Set the listener to watch for value changes.
+        // ここで設定内容の変更があればリスナーを呼び出して
+        // 設定内容を自動的に保存している。
         preference.setOnPreferenceChangeListener(sBindPreferenceSummaryToValueListener);
 
         // Trigger the listener immediately with the preference's
         // current value.
+        // 設定した値をバインドする。
+        // バインドしたウィジェットと設定値を変更があるたびに自動的に保存・読み込みがなされる。
         sBindPreferenceSummaryToValueListener.onPreferenceChange(preference,
                 PreferenceManager
                         .getDefaultSharedPreferences(preference.getContext())

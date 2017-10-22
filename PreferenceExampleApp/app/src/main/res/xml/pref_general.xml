@@ -1,5 +1,9 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    以下はラジオボタンの設定項目
+    summary に設定した内容は画面の説明項目に表示される。
+    defaultValue は初期値
+    key は
     <SwitchPreference
         android:defaultValue="true"
         android:key="example_switch"

@@ -4,10 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-/**
- * Created by i_m_a on 2017/12/28.
- */
-
 public final class WakeLockBroadcastReceiver extends BroadcastReceiver {
 
     private WakeLockListener listener;

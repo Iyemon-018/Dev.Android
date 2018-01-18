@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="show_other_dates_array">
+        <item>defaults</item>
+        <item>other_months</item>
+        <item>out_of_range</item>
+        <item>decorated_disabled</item>
+        <item>all</item>
+        <item>none</item>
+    </string-array>
+</resources>

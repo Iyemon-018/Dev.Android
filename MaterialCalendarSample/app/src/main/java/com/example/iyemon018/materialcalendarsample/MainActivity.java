@@ -1,5 +1,6 @@
 package com.example.iyemon018.materialcalendarsample;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,9 +8,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.iyemon018.materialcalendarsample.decorator.DayOfWeekViewDecorator;
+import com.example.iyemon018.materialcalendarsample.decorator.TodayViewDecorator;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.format.DateFormatTitleFormatter;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.LinkedHashMap;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,5 +58,19 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.show_other_dates_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.showOtherDatesSpinner.setAdapter(adapter);
+
+        // タイトル部の書式を設定する。
+        // MaterialCalenderView#setTitleFormatter(TitleFormatter format) を使用する。
+        // 引数には書式化するためのフォーマット インターフェースを引き渡す。
+        // TitleFormatter はSimpleDateFormat によって設定可能なDateFormatTitleFormatter とMonthArrayTitleFormatter が用意されている。
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy年MM月", Locale.getDefault());
+        this.calendarView.setTitleFormatter(new DateFormatTitleFormatter(dateFormat));
+
+        // 現在日付の装飾を設定する。
+        this.calendarView.addDecorator(new TodayViewDecorator());
+
+        // 日曜日と土曜日の装飾を設定する。
+        this.calendarView.addDecorators(new DayOfWeekViewDecorator(Calendar.SUNDAY, Color.RED)
+                                    , new DayOfWeekViewDecorator(Calendar.SATURDAY, Color.BLUE));
     }
 }

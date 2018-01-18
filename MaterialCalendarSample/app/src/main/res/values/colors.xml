@@ -4,6 +4,5 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="unselection_month_sunday_foreground">#7FFF0000</color>
-    <color name="unselection_month_saturday_foreground">#7F0000FF</color>
+    <color name="point_day_accent">#7F3AFE3A</color>
 </resources>

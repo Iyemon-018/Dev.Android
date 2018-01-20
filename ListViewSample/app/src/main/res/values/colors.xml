@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    
+    <color name="list_view_item_alternate">#7FEEEEEE</color>
+
+    <color name="value_warning">#FFAFA40F</color>
+    <color name="value_error">#FFAF0000</color>
 </resources>

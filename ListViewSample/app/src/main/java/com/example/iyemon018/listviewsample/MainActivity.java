@@ -6,6 +6,7 @@ import android.widget.ListView;
 
 import java.util.Calendar;
 import java.util.LinkedList;
+import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,8 +31,11 @@ public class MainActivity extends AppCompatActivity {
         today.set(Calendar.MINUTE, 0);
         today.set(Calendar.SECOND, 0);
         today.set(Calendar.MILLISECOND, 0);
+    
+        Random random = new Random();
+        
         for (int hour=0; hour<24; hour++) {
-            dataList.add(new DataForHour(today.getTime(), (float)hour));
+            dataList.add(new DataForHour(today.getTime(), (float)random.nextInt(100)));
             today.add(Calendar.HOUR, 1);
         }
         

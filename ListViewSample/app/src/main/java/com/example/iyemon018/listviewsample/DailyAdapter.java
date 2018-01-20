@@ -1,14 +1,18 @@
 package com.example.iyemon018.listviewsample;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.LinkedList;
 
 import butterknife.BindView;
@@ -23,13 +27,22 @@ public final class DailyAdapter extends BaseAdapter {
     
     LayoutInflater layoutInflater;
     
-    static final SimpleDateFormat FORMATTER = new SimpleDateFormat("HH:mm:ss");
+    final int color;
+    
+    final int warningForeground;
+    
+    final int errorForeground;
+    
+    static final SimpleDateFormat FORMATTER = new SimpleDateFormat("HH:mm");
     
     public DailyAdapter(Context context) {
         
         this.dailyDataList = new LinkedList<>();
         this.layoutInflater = (LayoutInflater) context.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
+        this.color = ContextCompat.getColor(context, R.color.list_view_item_alternate);
+        this.warningForeground = ContextCompat.getColor(context, R.color.value_warning);
+        this.errorForeground = ContextCompat.getColor(context, R.color.value_error);
     }
     
     public void addData(DataForHour data) {
@@ -65,11 +78,26 @@ public final class DailyAdapter extends BaseAdapter {
         
         convertView = this.layoutInflater.inflate(R.layout.data_for_hour_item, parent, false);
         
-        DataForHour data = this.dailyDataList.get(position);
-        ViewHolder holder = new ViewHolder(convertView);
+        DataForHour data   = this.dailyDataList.get(position);
+        ViewHolder  holder = new ViewHolder(convertView);
         
-        holder.hourTextView.setText(FORMATTER.format(data.getDateTime()));
-        holder.valueTextView.setText(Float.toString(data.getValue()));
+        Date dateTime = data.getDateTime();
+        Calendar c = Calendar.getInstance();
+        c.setTime(dateTime);
+        c.add(Calendar.HOUR, 1);
+        c.add(Calendar.MINUTE, -1);
+        holder.hourTextView.setText(FORMATTER.format(data.getDateTime()) + " ～ " + FORMATTER.format(c.getTime()));
+        if (position % 2 == 1) {
+            holder.layoutRoot.setBackgroundColor(this.color);
+        }
+    
+        TextView valueTextView = holder.valueTextView;
+        valueTextView.setText(Float.toString(data.getValue()));
+        if (data.getValue() > 80f) {
+            valueTextView.setTextColor(this.errorForeground);
+        } else if (data.getValue() > 50f) {
+            valueTextView.setTextColor(this.warningForeground);
+        }
         
         return convertView;
     }
@@ -78,10 +106,13 @@ public final class DailyAdapter extends BaseAdapter {
         
         @BindView(R.id.hourTextView)
         TextView hourTextView;
-    
+        
         @BindView(R.id.valueTextView)
         TextView valueTextView;
-        
+    
+        @BindView(R.id.layoutRoot)
+        LinearLayout layoutRoot;
+    
         ViewHolder(View view) {ButterKnife.bind(this, view);}
     }
 }

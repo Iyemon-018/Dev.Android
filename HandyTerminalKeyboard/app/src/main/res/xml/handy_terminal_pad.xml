@@ -11,8 +11,8 @@
             android:keyLabel="＜"
             android:keyWidth="40%p" />
         <Key
-            android:horizontalGap="20%p"
             android:codes="101"
+            android:horizontalGap="20%p"
             android:isRepeatable="true"
             android:keyEdgeFlags="right"
             android:keyLabel="＞"
@@ -21,10 +21,10 @@
 
     <Row>
         <Key
-            android:codes="110"
+            android:codes="111"
             android:isRepeatable="true"
             android:keyEdgeFlags="left"
-            android:keyHeight="130dp"
+            android:keyHeight="120dp"
             android:keyLabel="▲" />
         <Key
             android:codes="7"
@@ -43,8 +43,8 @@
 
     <Row>
         <Key
-            android:horizontalGap="20%p"
             android:codes="4"
+            android:horizontalGap="20%p"
             android:keyLabel="4" />
         <Key
             android:codes="5"
@@ -60,10 +60,10 @@
 
     <Row>
         <Key
-            android:codes="111"
+            android:codes="110"
             android:isRepeatable="true"
             android:keyEdgeFlags="left"
-            android:keyHeight="130dp"
+            android:keyHeight="120dp"
             android:keyLabel="▼" />
         <Key
             android:codes="1"
@@ -79,15 +79,15 @@
             android:isRepeatable="true"
             android:keyEdgeFlags="right"
             android:keyHeight="130dp"
-            android:textSize="12sp"
-            android:keyLabel="Enter" />
+            android:keyLabel="Enter"
+            android:textSize="12sp" />
     </Row>
 
     <Row>
 
         <Key
-            android:horizontalGap="20%p"
             android:codes="0"
+            android:horizontalGap="20%p"
             android:keyLabel="0" />
         <Key
             android:codes="10"

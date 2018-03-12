@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.inputmethodservice.KeyboardView xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<android.inputmethodservice.KeyboardView xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:id="@+id/handy_keyboard_view"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:keyPreviewLayout="@layout/key_preview"-->
+    <!--android:keyBackground="@color/colorPrimaryDark"-->
+    <!--android:keyTextColor="#fff"-->
+    <!--android:layout_alignParentBottom="true"-->
+    <!--android:background="@color/colorPrimary">-->
+
+<!--</android.inputmethodservice.KeyboardView>-->
+<com.example.iyemon018.handyterminalkeyboard.CustomKeyboardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/handy_keyboard_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:keyPreviewLayout="@layout/key_preview"
+    android:keyBackground="@color/colorPrimaryDark"
+    android:keyTextColor="#fff"
     android:layout_alignParentBottom="true"
     android:background="@color/colorPrimary">
 
-</android.inputmethodservice.KeyboardView>
+</com.example.iyemon018.handyterminalkeyboard.CustomKeyboardView>

@@ -54,6 +54,7 @@
             android:keyLabel="6" />
         <Key
             android:codes="90"
+            android:isRepeatable="true"
             android:keyEdgeFlags="right"
             android:keyLabel="BS" />
     </Row>

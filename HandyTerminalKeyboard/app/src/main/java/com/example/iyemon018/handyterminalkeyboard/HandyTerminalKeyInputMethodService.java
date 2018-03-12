@@ -28,8 +28,8 @@ public final class HandyTerminalKeyInputMethodService extends InputMethodService
      */
     @Override
     public View onCreateInputView() {
-        
-        KeyboardView keyboardView = (KeyboardView) getLayoutInflater().inflate(
+    
+        CustomKeyboardView keyboardView = (CustomKeyboardView) getLayoutInflater().inflate(
                 R.layout.handy_keyboard_layout, null);
         Keyboard     keyboard     = new Keyboard(this, R.xml.handy_terminal_pad);
         keyboardView.setKeyboard(keyboard);

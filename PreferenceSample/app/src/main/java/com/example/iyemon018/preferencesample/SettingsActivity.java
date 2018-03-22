@@ -37,6 +37,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     /**
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
+     *
+     * (日本語訳)
+     * →新しい値を反映するために、要約の要約を更新する優先値変更リスナー。
+     *
+     * pref_xxx.xml で設定したそれぞれの {@link Preference} クラスの {@link Preference#setSummary(int)} を実行する。
+     * summary は、設定項目に表示する、現在どのような値が設定されているかを表示する領域のこと。
+     * ここでは、{@link Preference} の変更通知を受け取り、その {@link Preference} キーに一致する値を読み込んで、
+     * その値をsummary に設定している。
      */
     private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
         
@@ -91,6 +99,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     /**
      * Helper method to determine if the device has an extra-large screen. For
      * example, 10" tablets are extra-large.
+     *
+     * (日本語訳)
+     * -> ヘルパーメソッドを使用して、デバイスに超大画面があるかどうかを判断します。
+     * たとえば、10インチのタブレットは超大型です。
+     *
      */
     private static boolean isXLargeTablet(Context context) {
     
@@ -105,6 +118,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      * preference title) is updated to reflect the value. The summary is also
      * immediately updated upon calling this method. The exact display format is
      * dependent on the type of preference.
+     *
+     * (日本語訳)
+     * →プリファレンスの要約をその値にバインドします。
+     * より具体的には、プリファレンスの値が変更されると、
+     * その要約（プリファレンスタイトルの下のテキスト行）が値を反映するように更新されます。
+     * 要約は、このメソッドを呼び出すとすぐに更新されます。
+     * 正確な表示フォーマットは、好みのタイプに依存する。
+     *
+     * {@link Preference} が変更された際に {@link Preference#getKey()} で取得できるキーの値をsummary に表示するための
+     * リスナーと {@link Preference} をバインドする。
      *
      * @see #sBindPreferenceSummaryToValueListener
      */
@@ -135,6 +158,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      */
     private void setupActionBar() {
     
+        // アクションバーに <- ボタンを追加する。
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             // Show the Up button in the action bar.
@@ -158,6 +182,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public void onBuildHeaders(List<Header> target) {
     
+        // pref_headers.xml から読み込んだ {@link PreferenceActivity.Header} を取得する。
         loadHeadersFromResource(R.xml.pref_headers, target);
     }
     
@@ -167,6 +192,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
      */
     protected boolean isValidFragment(String fragmentName) {
     
+        // 参考 : https://kokufu.blogspot.jp/2013/12/preferenceactivity-isvalidfragment.html
+        
+        //
+        // このPreferenceActivity は設計上、外部のFragment を呼び出すことができる。
+        // この設計ではFragment をこのActivity で使用するためのものだが、
+        // 悪意のあるコードを呼び出すこともできてしまう。
+        // セキュアなコードを保証するため、このメソッドでこのActivity が呼び出すことのできる
+        // Fragment を検証する。
+        //
         return PreferenceFragment.class.getName()
                                        .equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName()

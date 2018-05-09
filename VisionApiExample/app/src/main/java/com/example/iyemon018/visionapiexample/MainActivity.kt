@@ -1,12 +1,15 @@
 package com.example.iyemon018.visionapiexample
 
+import android.content.Intent
 import android.databinding.DataBindingUtil
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.example.iyemon018.visionapiexample.databinding.ActivityMainBinding
+import com.example.iyemon018.visionapiexample.useCase.RequestIntentService
 import com.example.iyemon018.visionapiexample.useCase.ToastMessageService
 import com.example.iyemon018.visionapiexample.viewModel.MainActivityViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,8 +21,9 @@ class MainActivity : AppCompatActivity() {
 
         val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         val messageService = ToastMessageService(this)
+        val requestIntentService = RequestIntentService(this)
 
-        binding.vm = MainActivityViewModel(messageService)
+        binding.vm = MainActivityViewModel(messageService, requestIntentService)
 
         setSupportActionBar(toolbar)
 
@@ -43,5 +47,25 @@ class MainActivity : AppCompatActivity() {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    /**
+     * Dispatch incoming result to the correct fragment.
+     */
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RequestIntentService.TAKE_PICTURE_REQUEST_CODE) {
+            if (data != null) {
+                // TODO ここでカメラで撮影したイメージを取得したい。
+                val extras = data.extras
+                val bitmap: Bitmap = extras.get("data") as Bitmap
+//                findViewById<ImageView>(R.id.imageView).setImageBitmap(bitmap)
+                val uri = data.data
+                if (uri != null) {
+
+                }
+            }
+        }
+
     }
 }

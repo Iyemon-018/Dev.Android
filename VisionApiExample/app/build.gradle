@@ -4,6 +4,17 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+// 以下のURLにある通りに
+//  apply plugin: 'kotlin-kapt'
+//  kapt 'com.android.databinding:compiler:3.1.2'
+//  kapt {
+//      generateStubs = true
+//  }
+// を追加しないと、Binding クラスの参照が解決できない。
+//
+// https://qiita.com/knakamigawa/items/ece318fe22188e3a3e97
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -20,6 +31,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -31,4 +45,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    kapt 'com.android.databinding:compiler:3.1.2'
+}
+
+kapt {
+    generateStubs = true
 }

@@ -8,6 +8,8 @@ import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.Toast
 import com.example.iyemon018.visionapiexample.databinding.ActivityMainBinding
 import com.example.iyemon018.visionapiexample.useCase.RequestIntentService
 import com.example.iyemon018.visionapiexample.useCase.ToastMessageService
@@ -56,13 +58,16 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == RequestIntentService.TAKE_PICTURE_REQUEST_CODE) {
             if (data != null) {
-                // TODO ここでカメラで撮影したイメージを取得したい。
-                val extras = data.extras
-                val bitmap: Bitmap = extras.get("data") as Bitmap
-//                findViewById<ImageView>(R.id.imageView).setImageBitmap(bitmap)
-                val uri = data.data
-                if (uri != null) {
-
+                if (data.extras == null) {
+                    Toast.makeText(this, "data.extras is null.", Toast.LENGTH_LONG).show()
+                } else {
+                    val extrasData = data.extras.get("data")
+                    if (extrasData == null) {
+                        Toast.makeText(this, "extras.data not exist.", Toast.LENGTH_LONG).show()
+                    } else {
+                        val bitmap = extrasData as Bitmap
+                        findViewById<ImageView>(R.id.imageView).setImageBitmap(bitmap)
+                    }
                 }
             }
         }

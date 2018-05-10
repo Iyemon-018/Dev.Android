@@ -11,9 +11,13 @@ import com.example.iyemon018.visionapiexample.useCase.RequestService
 
 class MainActivityViewModel(private val messageService: MessageService, private val requestService: RequestService) : ViewModel() {
 
+    var pictureUri: Uri? = null
+
     fun onClick() {
-        this.messageService.information("onClicked!!!!")
         this.requestService.toTakePicture()
     }
 
+    fun onRequestFromCamera() {
+        this.pictureUri = this.requestService.getPictureUri()
+    }
 }

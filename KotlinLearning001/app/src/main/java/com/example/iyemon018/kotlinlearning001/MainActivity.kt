@@ -33,5 +33,14 @@ class MainActivity : AppCompatActivity() {
         val formatter = TextFormatter(content)
         val writer = StdOutWriter()
         writer.write(formatter)
+
+        //
+        // fold はC# でいうところの.Aggregate と同じ。
+        // 第一引数は初期値、第二引数は実行されるアクション
+        // 以下の結果は fold = 6 となる。
+        //
+        val list = listOf(1,2,3)
+        val fold = list.fold(0) { s1, s2 -> s1 + s2}
+        println(fold)
     }
 }

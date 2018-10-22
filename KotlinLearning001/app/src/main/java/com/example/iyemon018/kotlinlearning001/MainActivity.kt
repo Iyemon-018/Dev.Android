@@ -42,5 +42,12 @@ class MainActivity : AppCompatActivity() {
         val list = listOf(1,2,3)
         val fold = list.fold(0) { s1, s2 -> s1 + s2}
         println(fold)
+
+        //
+        // map はC# でいうところの.Select と同じ。
+        //
+        val prices = listOf(100, 230, 980, 10923)
+        val pricesTaxInclude = prices.map { x -> x * 1.08 }
+        println(pricesTaxInclude)
     }
 }

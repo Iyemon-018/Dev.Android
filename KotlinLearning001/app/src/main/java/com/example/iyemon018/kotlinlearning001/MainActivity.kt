@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         // item.csv の値段を税込み価格で出力する。
         val pricesOfFile = formatter.format().split(lineSeparator)                          // １行単位で取り出し
             .drop(1)                                     // 1行目はヘッダーなので読み飛ばす。 これはC# の.Skip(1) とおなじ。
-            .map { x -> x.split(",")[2].trimEnd() }  // 各行の3 列目[値段列]の数値を取り出す。改行が含まれているのでtrimEnd する。
+            .map { x -> x.split(",")[2].trimEnd() }  // 各行の3 列目[値段列]の数値を取り出す。改行が含まれているのでtrimEnd する。(多分Windows OS 上で作ったファイルなので改行コードがAndroid 用ではない)
             .filter { x -> !x.isNullOrEmpty() }             // 空白は除外しておく。この拡張関数はデフォルトで定義されていて便利。
             .map { x -> x.toInt() }                         // 文字列から数値へのキャスト
             .map { x -> x * 1.08 }                          // 税込み価格へ変換する。
@@ -61,5 +61,17 @@ class MainActivity : AppCompatActivity() {
         val prices = listOf(100, 230, 980, 10923)
         val pricesTaxInclude = prices.map { x -> x * 1.08 }
         println(pricesTaxInclude)
+
+        //
+        // スコープ関数 let
+        // おもに単一オブジェクトのmap のような使い方をする。
+        // 用途としてはnullable オブジェクトの射影ぽく使う。
+        // つまり object?.let { (変換処理) }
+        // こんな感じ。
+        // これだと、object が null の場合は、左辺が null になる。
+        // object が not null の場合は、左辺が 変換処理の実行結果になる。
+        //
+        val upper = "test"?.let { it.toUpperCase() }
+        println(upper)
     }
 }

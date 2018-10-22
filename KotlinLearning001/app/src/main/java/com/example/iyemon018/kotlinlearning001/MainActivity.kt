@@ -71,7 +71,27 @@ class MainActivity : AppCompatActivity() {
         // これだと、object が null の場合は、左辺が null になる。
         // object が not null の場合は、左辺が 変換処理の実行結果になる。
         //
+        // 同じ機能を提供する.run もあるが、こちらはスコープ内で暗黙的にオブジェクトを参照する。
+        // "test"?.run { toUpperCase() }
+        // 上記は以下のlet と同じ結果になる。
+        // it が明示的に表現される分、let のほうが使いやすそう。
+        //
         val upper = "test"?.let { it.toUpperCase() }
         println(upper)
+
+        // enumValues<T>() はC# のEnum.Values().OfType<T>() と同じイメージ。
+        // enum class の.name は列挙子の宣言名を取り出す。
+        val formatTypeNames = enumValues<FormatType>().map { x -> x.name }
+        println(formatTypeNames)
+        // enumValueOf<T>(String) は引数に指定した文字列と列挙子.name が一致する列挙子オブジェクトを取り出す。
+        // 引数に指定した名称の列挙子が指定した列挙帯に存在しない場合はIllegalArgumentException をスローする。
+        val formatTypeOfMarkdown = enumValueOf<FormatType>("Markdown")
+        println(formatTypeOfMarkdown)
     }
+}
+
+enum class FormatType {
+    Text,
+    CSV,
+    Markdown,
 }

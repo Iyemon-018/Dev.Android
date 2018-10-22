@@ -10,5 +10,7 @@ class FileLoader(private val file:File): Loader {
         require(file.exists())
     }
 
+    val fileName:String = file.name
+
     override fun load(): String? = file.readText()
 }

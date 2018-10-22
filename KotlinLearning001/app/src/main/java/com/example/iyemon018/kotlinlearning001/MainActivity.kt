@@ -19,7 +19,11 @@ class MainActivity : AppCompatActivity() {
         val downloadDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).absolutePath
         val fileName = "${downloadDirectory}${pathSeparator}KotlinLearning${pathSeparator}item.csv"
 
+        // also は対象のオブジェクトを初期化する際に使用する拡張関数のこと。
+        // init の実行後に呼び出される。
+        // 参考ページ : https://qiita.com/ngsw_taro/items/d29e3080d9fc8a38691e#also
         val content = FileLoader(File(fileName).also {
+            // このタイミングでファイルの存在チェックをすることで、FileLoader のinit 時点でファイルは確実に存在することになる。
             if (!it.exists()) {
                 throw IllegalArgumentException("$fileName にファイルがありません。")
             }

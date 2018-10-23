@@ -26,6 +26,16 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/stateTextView"/>
 
+        <com.example.iyemon018.lifecyclesample001.MyCustomView android:layout_width="wrap_content"
+                                                               android:layout_height="wrap_content"
+                                                               android:id="@+id/indicator"
+                                                               app:selected="1"/>
+
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="押下して更新"
+                android:id="@+id/updateButton"/>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

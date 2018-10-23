@@ -2,6 +2,7 @@ package com.example.iyemon018.lifecyclesample001
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 
@@ -22,6 +23,18 @@ class MainActivity : AppCompatActivity() {
 
         _stateTextView = findViewById(R.id.stateTextView)
         _editText = findViewById(R.id.editText)
+        val customView = findViewById<MyCustomView>(R.id.indicator)
+        val updateButton = findViewById<Button>(R.id.updateButton)
+        updateButton.setOnClickListener {
+            // 現在選択されているインジケーターの次を選択する。
+            // 最後まで選択したら最初から選択しなおす。
+            val selected = customView.selected + 1
+            if (selected >= MyCustomView.INDICATOR_COUNT) {
+                customView.setSelected(0, true)
+            } else {
+                customView.setSelected(selected, true)
+            }
+        }
     }
 
     /**

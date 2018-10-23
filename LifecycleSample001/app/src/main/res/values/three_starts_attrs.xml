@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--ここにはカスタムビューで使用する属性を追加することができる。-->
+    <!--以下は integer 型の selected 属性を追加している。-->
+    <declare-styleable name="MyCustomView">
+        <attr name="selected" format="integer" />
+    </declare-styleable>
+</resources>

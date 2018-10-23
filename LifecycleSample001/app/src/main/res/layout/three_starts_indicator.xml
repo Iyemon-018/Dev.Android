@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--星を３つ表示するだけの単純なカスタムビュー-->
+<!--ルート要素がLinearLayout でなく、merge なのはカスタムビューのクラスがLinearLayout を継承したクラスだから。-->
+<!--余計なネストを避けるためのお作法のようなもの。-->
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="horizontal">
+
+    <ImageView android:id="@+id/star1"
+               android:src="@mipmap/star"
+               android:layout_width="48dp"
+               android:layout_height="48dp"
+               android:layout_margin="4dp"/>
+
+    <ImageView android:id="@+id/star2"
+               android:src="@mipmap/star_empty"
+               android:layout_width="48dp"
+               android:layout_height="48dp"
+               android:layout_margin="4dp"/>
+
+    <ImageView android:id="@+id/star3"
+               android:src="@mipmap/star_empty"
+               android:layout_width="48dp"
+               android:layout_height="48dp"
+               android:layout_margin="4dp"/>
+
+</merge>

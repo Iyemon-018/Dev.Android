@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
+        android:id="@+id/fragment_container"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
+        android:background="@android:color/holo_blue_bright"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".MainActivity">
 
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        <!--静的にFragment を追加する場合は以下の方法でOK-->
+        <!--android:name 属性にカスタマイズしたFragment のクラス名を設定すれば使える。-->
+        <!--<fragment android:layout_width="match_parent"-->
+                  <!--android:layout_height="wrap_content"-->
+                  <!--android:name="com.example.iyemon018.fragmentsample001.MyFragment"-->
+                  <!--android:id="@+id/myFragment"/>-->
 
-    <!--静的にFragment を追加する場合は以下の方法でOK-->
-    <!--android:name 属性にカスタマイズしたFragment のクラス名を設定すれば使える。-->
-    <fragment android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:name="com.example.iyemon018.fragmentsample001.MyFragment"
-              android:id="@+id/myFragment"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                  android:orientation="horizontal">
 
-</android.support.constraint.ConstraintLayout>
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="追加"
+                android:id="@+id/add_button"/>
+
+        <Button android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="削除"
+                android:id="@+id/remove_button"/>
+
+    </LinearLayout>
+
+</LinearLayout>

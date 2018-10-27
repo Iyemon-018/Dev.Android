@@ -13,6 +13,35 @@ import android.widget.Button
  */
 class MyFragment : Fragment() {
 
+    /**
+     * Fragment のライフサイクル
+     *  onAttach    // Fragment とActivity が関連付けられた。
+     *              // getActivity の戻り値は null になる。
+     *  ↓
+     *  onCreate    // 初期化処理のタイミング
+     *  ↓
+     *  onCreateView
+     *  ↓
+     *  onActivityCreated
+     *  ↓
+     *  onStart     // この時点ではまだ描画されていない。
+     *  ↓
+     *  onResume    // ここで描画されたことになる。
+     *  ↓
+     *  onPause     // この時点ではまだ描画されている。
+     *  ↓
+     *  onStop      // この時点で非表示になる。
+     *  ↓
+     *  onSavedInstance // Activity でもあった必要な情報の保存タイミング
+     *                  // ここで保存した情報は、onCreate ～ onActivityCreated のBundle 引数から取り出す。
+     *  ↓
+     *  onDestroyView   // これ以降は不要なリソースの開放に使用する。
+     *  ↓
+     *  onDestroy
+     *  ↓
+     *  onDetach
+     */
+
     private var _listener: OnFragmentInteractionListener? = null
 
     /**

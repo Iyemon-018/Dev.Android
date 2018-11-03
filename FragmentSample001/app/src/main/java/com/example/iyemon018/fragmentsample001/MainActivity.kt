@@ -41,6 +41,22 @@ class MainActivity : AppCompatActivity(), OnFragmentInteractionListener {
             fragmentManager.popBackStack()
         }
 
+        //
+        // NetworkCheckFragment を追加する。
+        // このFragment はUI を持たないのでこのタイミングでsupportFragmentManager を使って追加する。
+        // このFragment は再構築を抑制しているが、このActivity は画面回転時などに再構築されるため
+        // 以下のように１度限りの追加処理を実行する。
+        //
+        val networkCheckTag = NetworkCheckFragment::class.java.simpleName
+        var networkCheckFragment = supportFragmentManager.findFragmentByTag(networkCheckTag)
+        if (networkCheckFragment == null) {
+            networkCheckFragment = NetworkCheckFragment()
+            supportFragmentManager.beginTransaction()
+                .add(networkCheckFragment, networkCheckTag)
+                .commit()
+        }
+
+
         // バックスタックにFragment が追加されたときのリスナーを登録する。
         val fragmentManager = supportFragmentManager
         fragmentManager.addOnBackStackChangedListener {
